@@ -13,7 +13,7 @@ export const play: Command = {
         .setName("play")
         .setDescription("Play a song in a voice channel")
         .addStringOption(option =>
-            option.setName('query')
+            option.setName('url')
                 .setDescription('Search the internet for your song')
                 .setRequired(true)
             ),
