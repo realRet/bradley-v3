@@ -62,7 +62,6 @@ async function execute(interaction: CommandInteraction) {
     await interaction.reply("Searching for your song...");
 
     while(connection?.queue.length > 0) {
-        try {
             connection.isPlaying = true;
             const songUrl = connection.queue.shift() ?? "";
             
@@ -76,10 +75,6 @@ async function execute(interaction: CommandInteraction) {
             await interaction.followUp("Playing: " + songInfo.videoDetails.title);
             connection.player.play(createAudioResource(song));
             await new Promise(resolve => connection.player.once('idle', resolve));
-        } catch (error) {
-            await interaction.followUp("An error occurred: " + error);
-            console.log(error);
-        }
     }
 
     await interaction.followUp("No more songs in the queue.... BYE!");
